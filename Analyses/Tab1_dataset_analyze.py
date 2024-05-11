@@ -54,7 +54,7 @@ def error_number_of_device(path,path1):
                "Row", "Col", "ErrorCount"]]
     dfstor = df2.drop_duplicates(
         subset=["Server", "Name",  "Position", "EccType", "Stack", "PcId", "SID", "BankArray",
-                "BankGroup", "Row", "Col"], keep='first')  # 去重
+                "BankGroup", "Row", "Col"], keep='first')  
     i = 0
     CE_number = 0
     dfstor = dfstor[dfstor["ErrorCount"] < 100000]
