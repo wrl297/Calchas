@@ -70,7 +70,7 @@ cd <folder>
 python3 <filename>.py
 ```
 
-The results may be directly output in the console, and detailed data can also be obtained from the `Data` folder. As the prediction models are not entirely robust, the results of Figures 12-15 may vary. Therefore, we also offer the results used in the paper in the `Data\*\result_used_in_paper` folder.
+The results may be directly output in the console, and detailed data can also be obtained from the `Data` folder. Since the prediction model uses machine learning models, the results of Figures 12-15 may vary. Therefore, we also offer the results used in the paper in the `Data\*\result_used_in_paper` folder.
 
 
 
