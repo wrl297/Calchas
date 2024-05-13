@@ -22,13 +22,14 @@ In our platform,  use the following command to access our source code files:
 cd ATC_Artifact/
 ```
 
+ It contains four folders: **Analyses** , **Attempts**, **Data** and **Experiments**.  Among them, **Analyses**, **Attempts**, **Experiments** are the source code files, while **Data** contains the related data.
 
-
-## Structure 
+## Source Code Structure 
 
 Our code is divided into three parts, each corresponding to different sections of the article. 
 
 - **Analyses**(Section 3)
+
   - `Fig2_spatial_locality.py` - Support Finding 1 and Finding 2.
   - `Fig3_structure_impact.py` -Support Finding 3 and Finding 4.
   - `Fig6_time_between_error.py` - Support Finding 6.
@@ -40,18 +41,26 @@ Our code is divided into three parts, each corresponding to different sections o
   - `Tab3_ce_storm_machine.py` - Support Finding 7.
 
 - **Unsuccessful Attempts**(Section 4)
+
   - `Fig9a_CE_rate_predict.py` -Support Attempt 1(unsuccessful).
   - `Fig9b_GBDT_predict.py` - Support Attempt 2(unsuccessful).
   - `Fig9b_RF_predict.py` - Support Attempt 2(unsuccessful).
+
 - **Experiments**(Section 5)
+
   - `Fig12_prediction_performance.py` - Support Exp#1.
+
   - `Fig13_diff_model.py` - Support Exp#2.
+
   - `Fig14_diff_observation_window.py` - Support Exp#3.
+
   - `Fig15_diff_prediction_window.py` - Support Exp#4.
+
+    
 
 **Note that** the file name prefixes 'Fig' and 'Tab' correspond to figures and tables in the paper, respectively. For example, the `Tab1_dataset_analyze.py`corresponds to the data in Table 1 of the paper, and the `Fig2_spatial_locality.py` corresponds to the results shown in Figure 2 of the paper.
 
-**Analyses**
+**Run Analyses**
 
 If you want to view our findings, you need to run the following command:
 
@@ -60,7 +69,7 @@ cd Analyses
 python3 <filename>.py
 ```
 
-For example, if you want to run the `Fig2_spatial_locality.py`  to analyze spatial locality of errors, you can do so by executing the following command in your terminal:
+For example, if you want to run the `Fig2_spatial_locality.py`  to analyze spatial locality of errors, you can run the following command in your terminal:
 
 ```
 cd Analyses
@@ -69,7 +78,7 @@ python3 Fig2_spatial_locality.py
 
 **Note that** all results will be displayed in the terminal.
 
-**Attempts**
+**Run Attempts**
 
 If you want to view our attempts, you need to run the following command:
 
@@ -78,7 +87,7 @@ cd Attempts
 python3 <filename>.py
 ```
 
-For example, if you want to run the ``Fig9a_CE_rate_predict.py``, you can do so by executing the following command in your terminal:
+For example, if you want to run the ``Fig9a_CE_rate_predict.py``, you can run the following command:
 
 ```
 cd Attempts
@@ -87,13 +96,13 @@ python3 Fig9a_CE_rate_predict.py
 
 All results will be displayed in the terminal.
 
-**Experiments**
+**Run Experiments**
 
+In Experiments part, 
 
+ **Note that** the machine learning model may not be entirely robust, leading to fluctuations in prediction results. To mitigate this, we performed each experiment at least five times. Detailed results used in our paper can be found in the **Data** folder in our platform.
 
- **Note that** the machine learning model may not be entirely robust, leading to fluctuations in prediction results. To mitigate this, we performed each experiment at least five times. Detailed results used in our paper can be found in the **Data** folder.
-
-For example, you can use the following command to view the Exp#1 results used in our paper:
+For example, you can use the following command to view the Exp#1 results used in our paper in our platform:
 
 First，enter the **Data** folder:
 
@@ -114,3 +123,6 @@ The tree structure should be like:
     ├── RF_col-level_predictor.csv
     ├── RF_row-level_predictor.csv
     └── RF_server-level_predictor.csv
+
+The results of different level predictor are stored in different CSV files. For example, you can open the  `RF_bank-level_predictor.csv`file to view the results of the bank-level predictor used in our paper. 
+
