@@ -54,13 +54,13 @@ Our code is divided into two parts:
   - `Structure_impact.py` 
   - `Time_between_error.py`
 - **Prediction**: Contains four files that conduct experiments on the performance under different settings of __Calchas__.
-  - `Prediction_performance.py`
+- `Prediction_performance.py`
 
-  - `Diff_model.py` 
+- `Diff_model.py` 
 
-  - `Diff_observation_window.py` 
+- `Diff_observation_window.py` 
 
-  - `Diff_prediction_window.py` 
+- `Diff_prediction_window.py` 
 
 **Please note** that the file names represent the type of analysis or prediction. For example, `Prediction_performance.py`represents the preformance of __Calchas__.
 
@@ -107,9 +107,13 @@ Since the prediction model uses machine learning models, the results of  predict
 ## Citation
 
 Please cite our paper if you use this dataset.
+
+```
 @inproceedings {wu2024, 
 title = {Removing Obstacles before Breaking Through the Memory Wall: A Close Look at HBM Errors in the Field}, 
 author = {Wu, Ronglong and Zhou, Shuyue and Lu, Jiahao and Shen, Zhirong and Xu, Zikang and Shu, Jiwu and Yang, Kunlin and Lin, Feilong and Zhang, Yiming} 
 booktitle = {2024 USENIX Annual Technical Conference (USENIX ATC 24)}, 
 year = {2024} 
 }
+```
+
