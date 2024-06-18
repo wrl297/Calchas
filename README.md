@@ -2,13 +2,31 @@
 
 ## Introduction
 
-This is the implementation of Calchas as described in "Removing Obstacles before Breaking Through the Memory Wall: A Close Look at HBM Errors in the Field," presented at USENIX ATC'24. Calchas is a hierarchical, comprehensive, and non-intrusive failure prediction framework for HBM. For any inquiries, please contact rlwoo@stu.xmu.edu.cn.
+This is the datasets and implementation of Calchas as described in "Removing Obstacles before Breaking Through the Memory Wall: A Close Look at HBM Errors in the Field," presented at USENIX ATC'24. Calchas is a hierarchical, comprehensive, and non-intrusive failure prediction framework for HBM. 
 
+## Description of datasets
+To encourage researchers to explore the characteristics of HBM failures,we release datasets collect from 19 data centers. The datasets are contained in the Data folder, divided into two parts:
 
+&nbsp;&nbsp;&nbsp;&nbsp;● **processed_data** includes four CSV files with features and labels generated from different hierarchical levels: `data_for_bank-level_prediction.csv`, `data_for_col-level_prediction.csv`, `data_for_row-level_prediction.csv`, and `data_for_server-level_prediction.csv`. For instance, `data_for_bank-level_prediction` is the data used for predictions at the bank level, as shown in the example below:
 
-## Getting Started 
+| Peak Power  | Aver Power  | Temp        | CE_Row | CE_Col | CE_Cell | UER_Row | UER_Col | UER_Cell | UEO_Row | UEO_Col | UEO_Cell | All_Row | All_Col | All_Cell | SID_0 | SID_1 | label |
+| ----------- | ----------- | ----------- | ------ | ------ | ------- | ------- | ------- | -------- | ------- | ------- | -------- | ------- | ------- | -------- | ----- | ----- | ----- |
+| 1           | 1           | 1           | 1      | 1      | 1       | 0       | 0       | 0        | 0       | 0       | 0        | 1       | 1       | 1        | 1     | 0     | 0     |
+| 1.036677418 | 1.035688311 | 0.992300485 | 1      | 1      | 1       | 0       | 0       | 0        | 0       | 0       | 0        | 1       | 1       | 1        | 1     | 0     | 0     |
 
-The following instructions will guide you on running the code on your local machine.
+&nbsp;&nbsp;&nbsp;&nbsp;● **raw_data** contains only one CSV file, which includes specific information about the location, time, and type of errors. Examples of the data format is shown below:
+
+| Datacenter  | Server      | Name | Stack | SID  | PcId | BankGroup | BankArray | Col  | Row    | Time       | EccType |
+| ----------- | ----------- | ---- | ----- | ---- | ---- | --------- | --------- | ---- | ------ | ---------- | ------- |
+| Datacenter8 | 0.108.38.22 | DSA3 | 0x3   | 0x0  | 0x1  | 0x2       | 0x1       | 0x54 | 0x3e2b | 1650690000 | UER     |
+| Datacenter8 | 0.108.38.22 | DSA3 | 0x3   | 0x0  | 0x1  | 0x2       | 0x1       | 0x5c | 0x3fbb | 1650690000 | UER     |
+| Datacenter0 | 0.0.0.16    | DSA8 | 0x0   | 0x0  | 0x4  | 0x2       | 0x3       | 0x58 | 0x2a57 | 1652709600 | CE      |
+
+__Note that__ we have anonymized some information to avoid sensitive information being inferred.
+
+## Analyses and Prediction 
+
+The following instructions will guide you on running the prediction code on your local machine.
 
 ### Prerequisites 
 
@@ -22,105 +40,78 @@ pip3 install -r requirements.txt
 
 ## Source Code Structure 
 
-Our code is divided into three parts, each corresponding to different sections of the article.
+Our code is divided into two parts:
 
-- **Analyses**(Section 3)
-  - `Fig2_spatial_locality.py` - Support Finding 1 and Finding 2.
-  - `Fig3_structure_impact.py` -Support Finding 3 and Finding 4.
-  - `Fig6_time_between_error.py` - Support Finding 6.
-  - `Fig7_power_impact.py` - Support Finding 8.
-  - `Fig8a_avg_temp_distribution.py` - Support Finding 9.
-  - `Fig8b_max_temp_distribution.py` - Support Finding 9.
-  - `Tab1_dataset_analyze.py` - Support dataset overview in Table 1.
-  - `Tab2_error_mode.py` - Support Finding 5.
-  - `Tab3_ce_storm_machine.py` - Support Finding 7.
+- **Analyses**:  Contains nine files that analyze different characteristics of errors.
+  - `Avg_temp_distribution.py` 
+  - `Ce_storm_machine.py` 
+  - `Dataset_analyze.py` 
+  - `Error_mode.py` 
+  - `Max_temp_distribution.py` 
+  - `Power_impact.py` 
+  - `Spatial_locality.py` 
+  - `Structure_impact.py` 
+  - `Time_between_error.py`
+- **Prediction**: Contains four files that conduct experiments on the performance under different settings of __Calchas__.
+- `Prediction_performance.py`
   
-- **Unsuccessful Attempts**(Section 4)
+- `Diff_model.py` 
+  
+- `Diff_observation_window.py` 
+  
+- `Diff_prediction_window.py` 
 
-  - `Fig9a_CE_rate_predict.py` -Support Attempt 1(unsuccessful).
-  - `Fig9b_GBDT_predict.py` - Support Attempt 2(unsuccessful).
-  - `Fig9b_RF_predict.py` - Support Attempt 2(unsuccessful).
-
-- **Experiments**(Section 5)
-
-  - `Fig12_prediction_performance.py` - Support Exp#1.
-
-  - `Fig13_diff_model.py` - Support Exp#2.
-
-  - `Fig14_diff_observation_window.py` - Support Exp#3.
-
-  - `Fig15_diff_prediction_window.py` - Support Exp#4.
-
-**Please note** that the file names prefixed with 'Fig' and 'Tab' correspond to figures and tables in the paper, respectively. For example, `Tab1_dataset_analyze.py` corresponds to the data in Table 1 of the paper, while `Fig2_spatial_locality.py` corresponds to the results displayed in Figure 2 of the paper.
-
-
+**Please note** that the file names represent the type of analysis or prediction. For example, `Prediction_performance.py`represents the preformance of __Calchas__.
 
 ## Run
 
-As our dataset is currently under internal review, we offer an online platform (refer to Artifact Location) for evaluation. On our platform, utilize the following command to access our source code files:
-
-```
-cd ATC_Artifact/
-```
-
-If you want to validate our findings and results, please execute the following command:
+If you want to make predictions, please execute the following command:
 
 ```
 cd <folder>
 python3 <filename>.py
 ```
 
-The results may be directly output in the console, and detailed data can also be obtained from the `Data` folder. Since the prediction model uses machine learning models, the results of Figures 12-15 may vary. Therefore, we also offer the results used in the paper in the `Data\*\result_used_in_paper` folder.
-
-
-
-For example, if you want to replicate the results of Table 2 in the paper for error mode analysis, you can execute the following commands:
+For example, if you want to check the performance of __Calchas__ , you can execute the following commands:
 
 ```
-cd Analyses
-python3 Fig2_spatial_locality.py
+cd Experiments
+python3 Prediction_performance.py
 ```
 
-Subsequently, you can obtain the following output to verify the results presented in the paper.
+Subsequently, you can obtain the following output on the console:
 
 ```
-The results of Table 2 in Sec-3.2
+=======Test1 for each predictor=======
 
-Number of different error modes across various error types
-                 All error types   CE  UER  UEO  CE&UER  UEO&UER  CE&UEO&UER
-single-cell                  715  555  264    7       0        1           0
-two-cell                      67   36   63    2      15        1           0
-single-row                     9    5    1    0       4        2           0
-row-dominant                  20   17    4    7      16       10           7
-two-row                       42   27    4    4      33       11          16
-single-column                339  270   90   26      16        8           4
-column-dominant               41   16   22   13      11        3           3
-two-column                    38    2   10   22       7        7           1
-irregular                    159   65   97    6      58        1           1
+Results of row-level predictor (Precision, Recall, F1_score)
+RF with threshold=0.55: 0.6979166666666666, 0.881578947368421, 0.7790697674418604
+Default RF: 0.53125, 0.8947368421052632, 0.6666666666666666
 
-Percentage of different error modes across various error types (%)
-                 All error types        CE       UER       UEO   CE&UER  \
-single-cell             0.500000  0.558912  0.475676  0.080460  0.00000
-two-cell                0.046853  0.036254  0.113514  0.022989  0.09375
-single-row              0.006294  0.005035  0.001802  0.000000  0.02500
-row-dominant            0.013986  0.017120  0.007207  0.080460  0.10000
-two-row                 0.029371  0.027190  0.007207  0.045977  0.20625
-single-column           0.237063  0.271903  0.162162  0.298851  0.10000
-column-dominant         0.028671  0.016113  0.039640  0.149425  0.06875
-two-column              0.026573  0.002014  0.018018  0.252874  0.04375
-irregular               0.111189  0.065458  0.174775  0.068966  0.36250
+Results of col-level predictor (Precision, Recall, F1_score)
+RF with threshold=0.6: 0.7267080745341615, 0.8666666666666667, 0.7905405405405406
+Default RF: 0.7166666666666667, 0.9555555555555556, 0.8190476190476191
 
-                  UEO&UER  CE&UEO&UER
-single-cell      0.022727     0.00000
-two-cell         0.022727     0.00000
-single-row       0.045455     0.00000
-row-dominant     0.227273     0.21875
-two-row          0.250000     0.50000
-single-column    0.181818     0.12500
-column-dominant  0.068182     0.09375
-two-column       0.159091     0.03125
-irregular        0.022727     0.03125
+Results of bank-level predictor (Precision, Recall, F1_score)
+RF with threshold=0.55: 0.6681034482758621, 0.7380952380952381, 0.7013574660633485
+Default RF: 0.6681034482758621, 0.7380952380952381, 0.7013574660633485
+
+Results of server-level predictor (Precision, Recall, F1_score)
+RF with threshold=0.6: 0.3325581395348837, 0.5674603174603174, 0.4193548387096774
+Default RF: 0.2826510721247563, 0.5753968253968254, 0.3790849673202614
 ```
 
+Since the prediction model uses machine learning models, the results of  prediction may vary. 
 
+## Citation
+Please cite our paper if you use this dataset.
+
+```
+@inproceedings {wu2024, 
+title = {Removing Obstacles before Breaking Through the Memory Wall: A Close Look at HBM Errors in the Field}, 
+author = {Wu, Ronglong and Zhou, Shuyue and Lu, Jiahao and Shen, Zhirong and Xu, Zikang and Shu, Jiwu and Yang, Kunlin and Lin, Feilong and Zhang, Yiming} 
+booktitle = {2024 USENIX Annual Technical Conference (USENIX ATC 24)}, 
+year = {2024} 
+}
+```
 
