@@ -2,10 +2,10 @@
 
 ## Introduction
 
-This is the datasets and implementation of Calchas as described in "Removing Obstacles before Breaking Through the Memory Wall: A Close Look at HBM Errors in the Field," presented at USENIX ATC'24. Calchas is a hierarchical, comprehensive, and non-intrusive failure prediction framework for HBM. 
+This is the datasets and implementation of __Calchas__ as described in "Removing Obstacles before Breaking Through the Memory Wall: A Close Look at HBM Errors in the Field," presented at USENIX ATC'24. __Calchas__ is a hierarchical, comprehensive, and non-intrusive failure prediction framework for HBM. 
 
 ## Description of datasets
-To encourage researchers to explore the characteristics of HBM failures,we release datasets collect from 19 data centers. The datasets are contained in the `Data` folder, divided into two parts:
+To encourage researchers to explore the characteristics of HBM failures, we release datasets collect from 19 data centers. The datasets are contained in the `Data` folder, divided into two parts:
 
 &nbsp;&nbsp;&nbsp;&nbsp;● **processed_data** includes four CSV files with features and labels generated from different hierarchical levels: `data_for_bank-level_prediction.csv`, `data_for_col-level_prediction.csv`, `data_for_row-level_prediction.csv`, and `data_for_server-level_prediction.csv`. For instance, `data_for_bank-level_prediction` is the data used for predictions at the bank level, as shown in the example below:
 
