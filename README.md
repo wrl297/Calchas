@@ -108,11 +108,17 @@ Since the prediction model uses machine learning models, the results of  predict
 Please cite our paper if you use this dataset.
 
 ```
-@inproceedings {wu2024, 
-title = {Removing Obstacles before Breaking Through the Memory Wall: A Close Look at HBM Errors in the Field}, 
-author = {Wu, Ronglong and Zhou, Shuyue and Lu, Jiahao and Shen, Zhirong and Xu, Zikang and Shu, Jiwu and Yang, Kunlin and Lin, Feilong and Zhang, Yiming} 
-booktitle = {2024 USENIX Annual Technical Conference (USENIX ATC 24)}, 
-year = {2024} 
+@inproceedings {298591,
+author = {Ronglong Wu and Shuyue Zhou and Jiahao Lu and Zhirong Shen and Zikang Xu and Jiwu Shu and Kunlin Yang and Feilong Lin and Yiming Zhang},
+title = {Removing Obstacles before Breaking Through the Memory Wall: A Close Look at {HBM} Errors in the Field},
+booktitle = {2024 USENIX Annual Technical Conference (USENIX ATC 24)},
+year = {2024},
+isbn = {978-1-939133-41-0},
+address = {Santa Clara, CA},
+pages = {851--867},
+url = {https://www.usenix.org/conference/atc24/presentation/wu-ronglong},
+publisher = {USENIX Association},
+month = jul
 }
 ```
 
